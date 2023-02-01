@@ -9,8 +9,21 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
+function getEmailDomain(emailAddress) {
 
+    const errorMessage= 'you entered wrong email address.';
+    const domainName= emailAddress.substring(emailAddress.indexOf("@"));
 
+    if(!emailAddress.includes("@")){
+        // const errorMessage=('you entered wrong email address.');
+        return errorMessage;
+    }
+    else{
+        // const domainName=(emailAddress.substring(emailAddress.indexOf("@")));
+        return domainName;
+    }
+}
+console.log(getEmailDomain('wimDeVink@novi.com'));
 
 /* Opdracht  2 */
 // Schrijf een functie genaamd typeOfEmail, die een emailadres verwacht. De functie checkt of het emailadres een novi domein heeft (medewerker), een novi-education domein (student), of extern domein (zoals gmail of outlook)
@@ -20,6 +33,28 @@
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
+function typeOfEmail(emailAddress){
+
+    const errorMessage= 'you entered wrong email address.';
+    const domainName= emailAddress.substring(emailAddress.indexOf("@"));
+
+    if(!emailAddress.includes("@")) {
+        return errorMessage;
+        } else {
+
+        if (domainName !== '@novi.nl') {
+            if (domainName === '@novi-education.nl') {
+                return "Student";
+            } else {
+                return "Extern";
+            }
+        } else {
+            return "Medewerker";
+        }
+    }
+}
+
+console.log(typeOfEmail('papa@novi-education.nl'));
 
 
 /* Opdracht  3 */
@@ -34,3 +69,21 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+function checkEmailValidity(emailAddress){
+
+    const atMail= emailAddress.includes("@");
+    const indexAt= emailAddress.indexOf('@');
+    const commaMail=emailAddress.includes(",");
+    const period=emailAddress.includes('.');
+    const indexPeriod=emailAddress.lastIndexOf('.');
+    const emailLength= emailAddress.length-1
+
+    if(atMail && !commaMail && (indexPeriod>indexAt) && (indexPeriod!==emailAddress.length-1 )){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+console.log(checkEmailValidity('janveen@hotmail.com'));
