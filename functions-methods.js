@@ -69,3 +69,21 @@ console.log(typeOfEmail('papa@novi-education.nl'));
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+function checkEmailValidity(emailAddress){
+
+    const atMail= emailAddress.includes("@");
+    const indexAt= emailAddress.indexOf('@');
+    const commaMail=emailAddress.includes(",");
+    const period=emailAddress.includes('.');
+    const indexPeriod=emailAddress.lastIndexOf('.');
+    const emailLength= emailAddress.length-1
+
+    if(atMail && !commaMail && (indexPeriod>indexAt) && (indexPeriod!==emailAddress.length-1 )){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+console.log(checkEmailValidity('janveen@hotmail.com'));
